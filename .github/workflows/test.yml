@@ -1,0 +1,16 @@
+name: File-operation tests
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: bash -n screen-capture-alert.sh
+      - run: python3 -m unittest discover -s tests -v
